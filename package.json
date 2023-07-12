@@ -1,0 +1,60 @@
+{
+  "name": "postgraphile-session-init",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -vrf lib && tsc",
+    "test": "jest",
+    "lint": "yarn prettier --check && yarn eslint",
+    "lint:fix": "yarn eslint --fix; yarn prettier --write",
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx,.graphql .",
+    "prettier": "prettier --ignore-path .eslintignore '**/*.{js,jsx,ts,tsx,graphql,md,json}'",
+    "prepack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blairjordan/postgraphile-session-init.git"
+  },
+  "keywords": [
+    "postgraphile",
+    "graphile",
+    "engine",
+    "plugin",
+    "hooks",
+    "mutation",
+    "query",
+    "subscription",
+    "postgraphile-plugin",
+    "session",
+    "sql"
+  ],
+  "author": "Blair Jordan",
+  "license": "MIT",
+  "homepage": "https://github.com/blairjordan/postgraphile-session-init#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.7",
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
+    "@typescript-eslint/typescript-estree": "^3.7.1",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-jest": "^23.8.2",
+    "graphile-build": "^4.5.0",
+    "jest": "^26.1.0",
+    "postgraphile": "^4.4.3",
+    "prettier": "^2.0.4",
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "graphile-utils": "^4.4.4"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "proseWrap": "always"
+  },
+  "files": [
+    "lib"
+  ]
+}
