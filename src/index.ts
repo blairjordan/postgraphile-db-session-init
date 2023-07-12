@@ -6,12 +6,10 @@ const sessionInitPlugin: PostGraphilePlugin = {
 
     return async (options, callback) => {
       const context = await originalWithContext(options, async (ctx: any) => {
-        try {
-          await ctx.pgClient.query("INSERT INTO test_table VALUES('it ran')");
-          return callback(ctx);
-        } finally {
-          await ctx.release();
-        }
+        await ctx.pgClient.query(
+          "INSERT INTO public.test_table VALUES(current_setting('player.test')::text)"
+        );
+        return callback(ctx);
       });
 
       return context;
