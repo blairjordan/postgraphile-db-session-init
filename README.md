@@ -1,4 +1,4 @@
-# PostGraphile Session Init
+# PostGraphile DB Session Init
 
 This plugin enables you to run arbitrary  SQL prior to each PostGraphile query execution.
 
@@ -33,4 +33,4 @@ app.use(
 )
 ```
 
-In this example, the `DbSessionInitPlugin`` is used to create an instance of the plugin, initialized with a simple SQL command. The resulting instance is then included within the `pluginHook` which is passed into the postgraphile middleware during its initialization in the Express application.
+In this example, the `DbSessionInitPlugin` is used to create an instance of the plugin, initialized with a simple SQL command. The resulting instance is then included within the `pluginHook` which is passed into the postgraphile middleware during its initialization in the Express application.
