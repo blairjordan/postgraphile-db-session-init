@@ -1,19 +1,22 @@
-import { PostGraphilePlugin, withPostGraphileContext } from "postgraphile";
+import {
+  PostGraphilePlugin,
+  withPostGraphileContext,
+  WithPostGraphileContextOptions,
+} from "postgraphile";
 
-const sessionInitPlugin: PostGraphilePlugin = {
+const DbSessionInitPlugin = ({ sql }: { sql: string }): PostGraphilePlugin => ({
   withPostGraphileContext: (previous: any, _: any) => {
     const originalWithContext = previous ? previous : withPostGraphileContext;
 
-    return async (options, callback) => {
+    return async (options: WithPostGraphileContextOptions, callback) => {
       const context = await originalWithContext(options, async (ctx: any) => {
-        await ctx.pgClient.query(
-          "INSERT INTO public.test_table VALUES(current_setting('player.test')::text)"
-        );
+        await ctx.pgClient.query(sql);
         return callback(ctx);
       });
 
       return context;
     };
   },
-};
-export default sessionInitPlugin;
+});
+
+export default DbSessionInitPlugin;

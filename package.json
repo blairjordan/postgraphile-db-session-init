@@ -1,11 +1,10 @@
 {
-  "name": "postgraphile-session-init",
+  "name": "postgraphile-db-session-init",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -vrf lib && tsc",
-    "test": "jest",
     "lint": "yarn prettier --check && yarn eslint",
     "lint:fix": "yarn eslint --fix; yarn prettier --write",
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx,.graphql .",
