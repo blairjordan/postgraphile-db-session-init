@@ -1,8 +1,8 @@
 # PostGraphile Session Init
 
-This plugin enables you to run arbitrary SQL before each PostGraphile query is executed.
+This plugin enables you to run arbitrary  SQL prior to each PostGraphile query execution.
 
-The SQL that you provide will run *after* [pgSettings](https://www.graphile.org/postgraphile/usage-library/#pgsettings-function). Therefeore, any session variables that you set in `pgSettings` will be available in your SQL.
+The SQL that you provide will run *after* [pgSettings](https://www.graphile.org/postgraphile/usage-library/#pgsettings-function). Hence, any session variables that you establish in pgSettings will be accessible in your SQL.
 
 ## Installation
 
@@ -12,7 +12,7 @@ npm install postgraphile-db-session-init
 
 ## Usage
 
-The plugin takes a single argument, an object with the following properties:
+The plugin requires a single argument: an object containing the following properties.
 
 ```ts
 const { default: DbSessionInitPlugin } = require("postgraphile-db-session-init")
@@ -32,3 +32,5 @@ app.use(
   })
 )
 ```
+
+In this example, the `DbSessionInitPlugin`` is used to create an instance of the plugin, initialized with a simple SQL command. The resulting instance is then included within the `pluginHook` which is passed into the postgraphile middleware during its initialization in the Express application.
