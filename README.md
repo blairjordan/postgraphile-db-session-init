@@ -37,9 +37,9 @@ In this example, the `DbSessionInitPlugin` is used to create an instance of the 
 
 ### Precondition
 
-Defining a `precondition` function allows you to control when the provided SQL should be executed based on specific conditions. This can be useful for scenarios where you want to selectively execute the SQL command based on certain criteria.
+Defining a `precondition` function allows you to control when the provided SQL should be executed based on specific conditions.
 
-The `precondition` function should return a boolean value. If the function returns `true`, the SQL command will be executed. On the other hand, if the function is undefined or returns `false`, the SQL command will not be executed.
+The `precondition` function should return a boolean value. If the function returns `true` (or is undefined), the SQL command will be executed. On the other hand, if the function is returns `false`, the SQL command will not be executed.
 
 
 ```ts
