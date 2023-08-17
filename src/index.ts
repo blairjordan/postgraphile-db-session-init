@@ -1,16 +1,25 @@
 import {
   PostGraphilePlugin,
+  PostGraphileOptions,
   withPostGraphileContext,
-  WithPostGraphileContextOptions,
 } from "postgraphile";
 
-const DbSessionInitPlugin = ({ sql }: { sql: string }): PostGraphilePlugin => ({
+const DbSessionInitPlugin = ({
+  sql,
+  precondition,
+}: {
+  sql: string;
+  precondition?: (options: PostGraphileOptions) => boolean;
+}): PostGraphilePlugin => ({
   withPostGraphileContext: (previous: any, _: any) => {
     const originalWithContext = previous ? previous : withPostGraphileContext;
 
-    return async (options: WithPostGraphileContextOptions, callback) => {
+    return async (options: PostGraphileOptions, callback) => {
       const context = await originalWithContext(options, async (ctx: any) => {
-        await ctx.pgClient.query(sql);
+        if (!precondition || (precondition && precondition(options))) {
+          await ctx.pgClient.query(sql);
+        }
+
         return callback(ctx);
       });
 

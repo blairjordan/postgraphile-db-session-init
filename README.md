@@ -34,3 +34,22 @@ app.use(
 ```
 
 In this example, the `DbSessionInitPlugin` is used to create an instance of the plugin, initialized with a simple SQL command. The resulting instance is then included within the `pluginHook` which is passed into the postgraphile middleware during its initialization in the Express application.
+
+### Precondition
+
+Defining a `precondition` function allows you to control when the provided SQL should be executed based on specific conditions. This can be useful for scenarios where you want to selectively execute the SQL command based on certain criteria.
+
+The `precondition` function should return a boolean value. If the function returns `true`, the SQL command will be executed. On the other hand, if the function is undefined or returns `false`, the SQL command will not be executed.
+
+
+```ts
+const dbSessionInitPlugin = DbSessionInitPlugin({
+  sql: 'INSERT INTO my_audit_log (user_id, action) VALUES ($1, $2)',
+  precondition: (options) =>
+    options.pgSettings &&
+    'role' in options.pgSettings &&
+    options.pgSettings.role === 'authenticated_user',
+});
+```
+
+In this example, the SQL command will only be executed if the precondition conditions are met, specifically if the `role` in `pgSettings` is set to 'authenticated_user'.
